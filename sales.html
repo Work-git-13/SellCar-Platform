@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html class="light" lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Sellcar - Мои продажи</title>
+    <link href="/static/style4.css" rel="stylesheet"/>
+    <link href="/static/style.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+</head>
+<body>
+    <div class="page-container">
+        <header class="header">
+            <div class="header-container">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <a href="index.html" class="logo-link">
+                            <div class="logo">
+                                <span class="material-symbols-outlined logo-icon">directions_car</span>
+                                <h1 class="logo-text">Sellcar</h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="search-section">
+                        <div class="search-container">
+                            <label class="search-label">
+                                <span class="material-symbols-outlined search-icon">search</span>
+                                <input class="search-input" placeholder="Поиск по марке, модели или ключевому слову" type="text"/>
+                                <button class="search-filter-button">
+                                    <span class="material-symbols-outlined">tune</span>
+                                </button>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="user-section">
+                        <div class="user-dropdown">
+                            <button class="user-button">
+                                <img class="user-avatar" data-alt="User avatar" src="/static/default-avatar.png" onerror="this.src='https://via.placeholder.com/40'"/>
+                                <span class="user-name"></span>
+                                <span class="material-symbols-outlined dropdown-icon">expand_more</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-content" aria-labelledby="options-menu" aria-orientation="vertical" role="menu">
+                                    <a class="dropdown-item" href="/index.html" role="menuitem">Главная</a>
+                                    <a class="dropdown-item" href="/profile.html" role="menuitem">Мой профиль</a>
+                                    <a class="dropdown-item" href="/sales.html" role="menuitem">Мои продажи</a>
+                                    <a class="dropdown-item" href="/favorites.html" role="menuitem">Избранное</a>
+                                    <a class="dropdown-item logout-item" href="#" role="menuitem">Выход</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="main-content">
+            <div class="content-container">
+                <div class="page-header">
+                    <h1 class="page-title">Мои продажи</h1>
+                </div>
+                <div class="cars-grid">
+                    <div class="car-card add-new-card" onclick="openAddModal()">
+                        <div class="add-new-content">
+                            <span class="material-symbols-outlined add-icon">add_circle</span>
+                            <h3 class="add-title">Добавить автомобиль</h3>
+                            <p class="add-subtitle">Разместите новое объявление о продаже</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Terms</a>
+                    <span class="footer-separator">|</span>
+                    <a href="#" class="footer-link">Privacy</a>
+                    <span class="footer-separator">|</span>
+                    <a href="#" class="footer-link">About</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2025 Sellcar. Все права защищены.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Добавить автомобиль</h2>
+                <button class="modal-close" onclick="closeModal()">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <form class="modal-form" id="carForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Марка</label>
+                        <input type="text" id="iBrand" class="form-input" list="brands-list" placeholder="Начните вводить..." required>
+                        <datalist id="brands-list"></datalist>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Модель</label>
+                        <input type="text" id="iModel" class="form-input" list="models-list" placeholder="Выберите марку" required disabled>
+                        <datalist id="models-list"></datalist>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Тип кузова</label>
+                        <select id="iBody" class="form-input" required>
+                            <option value="Седан">Седан</option>
+                            <option value="Внедорожник">Внедорожник</option>
+                            <option value="Купе">Купе</option>
+                            <option value="Хэтчбек">Хэтчбек</option>
+                            <option value="Универсал">Универсал</option>
+                            <option value="Минивэн">Минивэн</option>
+                            <option value="Пикап">Пикап</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="iColor">Цвет</label>
+                        <select id="iColor" class="form-input" required>
+                            <option value="белый">Белый</option>
+                            <option value="серебристый">Серебристый</option>
+                            <option value="серый">Серый</option>
+                            <option value="чёрный">Чёрный</option>
+                            <option value="коричневый">Коричневый</option>
+                            <option value="синий">Синий</option>
+                            <option value="зелёный">Зелёный</option>
+                            <option value="красный">Красный</option>
+                            <option value="другие">Другой</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Год выпуска</label>
+                        <input type="number" id="iYear" class="form-input" placeholder="2020" min="1900" max="2026" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пробег (км)</label>
+                        <input type="number" id="iMileage" class="form-input" placeholder="50000" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Объем (L)</label>
+                        <input type="number" id="iEngineDisp" class="form-input" placeholder="3.0" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Мощность (л.с.)</label>
+                        <input type="number" id="iPower" class="form-input" placeholder="249" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Топливо</label>
+                        <select id="iFuel" class="form-input">
+                            <option value="Бензин">Бензин</option>
+                            <option value="Дизель">Дизель</option>
+                            <option value="Электро">Электро</option>
+                            <option value="Гибрид">Гибрид</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Коробка</label>
+                        <select id="iTrans" class="form-input">
+                            <option value="Автоматическая">Автоматическая</option>
+                            <option value="Механическая">Механическая</option>
+                            <option value="Роботизированная">Роботизированная</option>
+                            <option value="Вариатор">Вариатор</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Привод</label>
+                        <select id="iDrive" class="form-input">
+                            <option value="Полный">Полный</option>
+                            <option value="Задний">Задний</option>
+                            <option value="Передний">Передний</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Руль</label>
+                        <select id="iWheel" class="form-input">
+                            <option value="Левый">Левый</option>
+                            <option value="Правый">Правый</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Владельцев</label>
+                        <input type="number" id="iOwners" class="form-input" value="1" min="1">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">VIN</label>
+                        <input type="text" id="iVin" class="form-input" placeholder="XXXXXXXXXXXXXXXXX" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Госномер</label>
+                        <input type="text" id="iStateNum" class="form-input" placeholder="А777АА777" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Цена (₽)</label>
+                    <input type="number" id="iPrice" class="form-input" placeholder="2500000" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Ссылка на фото (URL)</label>
+                    <input type="text" id="iPhoto" class="form-input" placeholder="https://example.com/car.jpg">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Описание</label>
+                    <textarea id="iDesc" class="form-textarea" placeholder="Состояние, опции..." rows="3"></textarea>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="modal-button modal-button-secondary" onclick="closeModal()">Отмена</button>
+                    <button type="submit" class="modal-button modal-button-primary">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        function openAddModal() {
+            document.getElementById('modalTitle').textContent = 'Добавить автомобиль';
+            document.getElementById('carForm').reset();
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+
+        async function loadUserCars() {
+            try {
+                const response = await fetch('/api/user/cars');
+                
+                if (response.status === 401) {
+                    window.location.href = '/login';
+                    return;
+                }
+
+                const cars = await response.json();
+                
+                const grid = document.querySelector('.cars-grid');
+                const addButton = grid.querySelector('.add-new-card');
+                
+                grid.innerHTML = ''; 
+                
+                cars.forEach(car => {
+                    grid.innerHTML += createCarCardHTML(car);
+                });
+                
+                if (addButton) grid.appendChild(addButton);
+
+            } catch (error) {
+                console.error('Error loading user cars:', error);
+            }
+        }
+
+
+        function createCarCardHTML(car) {
+            const iconsFolder = '/static/icon/';
+            const globalDefault = '/static/icon/unknown_photo.png';
+            const bodyTypeMap = {
+                'внедорожник': 'off-road_photo.png',
+                'седан': 'sedan_photo.png',
+                'универсал': 'universal_photo.png',
+                'хэтчбек': 'hatchback_photo.png',
+                'купе': 'coupe_photo.png',
+                'минивэн': 'minivan_photo.png',
+                'пикап': 'pickup_photo.png',  
+                'другие': 'unknown_photo.png',
+            };
+            let photoUrl = globalDefault;
+            if (car.photos && car.photos.length > 0 && car.photos[0].photo_url) {
+                photoUrl = car.photos[0].photo_url;
+            } else {
+                const typeKey = (car.bodytype || '').toLowerCase().trim();
+                if (bodyTypeMap[typeKey]) {
+                    photoUrl = iconsFolder + bodyTypeMap[typeKey];
+                }
+            }
+
+            const price = (car.price || 0).toLocaleString();
+            const mileage = (car.mileage || 0).toLocaleString();
+            return `
+                <div class="car-card">
+                    <a href="car-details.html?id=${car.car_id}" class="car-card-link" style="text-decoration: none; color: inherit;">
+                        <div class="car-image-container">
+                            <div class="car-image" style="background-image: url('${photoUrl}')"></div>
+                        </div>
+                        <div class="car-info">
+                            <h3 class="car-title">${car.brand} ${car.model}</h3>
+                            <div class="price-section">
+                                <p class="car-price">${price} ₽</p>
+                                <div class="price-badge price-badge-green">
+                                    <p class="badge-text">Активно</p>
+                                </div>
+                            </div>
+                            <p class="car-details">
+                                ${car.production_date} г., ${mileage} км, ${car.engine_displacement}L
+                            </p>
+                        </div>
+                    </a>
+                    <div class="car-actions" style="padding: 0 16px 16px 16px;">
+                        <button class="action-button delete-button" onclick="deleteCar(${car.car_id})">
+                            <span class="material-symbols-outlined">delete</span>
+                            Удалить
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+
+        async function deleteCar(carId) {
+            if (!confirm('Вы уверены, что хотите удалить этот автомобиль?')) return;
+            
+            try {
+                const response = await fetch(`/api/cars/${carId}`, { method: 'DELETE' });
+                if (response.ok) {
+                    alert('Автомобиль удален!');
+                    loadUserCars();
+                } else {
+                    alert('Ошибка при удалении');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Ошибка сети');
+            }
+        }
+        const carDictionary = {
+            "VOLVO": ["XC90", "S80", "XC60", "S60", "S90", "XC70", "S40", "V50", "C30", "940", "850", "ENDEAVOR", "960", "V40", "760", "740", "C70", "S70", "V70", "V60", "V90", "V40_CC", "V90_CROSS_COUNTRY", "V60_CROSS_COUNTRY", "240_SERIES"],
+            "AUDI": ["Q7", "A3", "A4", "Q3", "Q5", "S6", "A6", "S8", "A8", "A7", "A1", "A5", "Q8", "100", "80", "90", "S4", "S5", "TT", "R8", "SQ5", "SQ7", "SQ8", "RS3", "RS4", "RS5", "RS6", "RS7", "RS_Q8", "ALLROAD", "A4_ALLROAD", "Q3_SPORTBACK"],
+            "BMW": ["X5", "X1", "X2", "X3", "Z4", "X4", "X6", "X7", "I8", "I3", "M5", "M4", "M2", "M3", "M8", "Z1", "Z3", "3ER", "5ER", "7ER", "8ER", "1-SERIES", "2-SERIES", "3-SERIES", "4-SERIES", "5-SERIES", "6-SERIES", "7-SERIES", "8-SERIES", "X5_M", "X6_M", "X3_M", "X4_M", "3-SERIES GRAN TURISMO", "2GRANDTOURER", "2ACTIVETOURER"],
+            "TOYOTA": ["RAV4", "CAMRY", "HIGHLANDER", "COROLLA", "AURIS", "YARIS", "REGIUS", "HILUX", "AVENSIS", "TUNDRA", "SIENNA", "VENZA", "VERSO", "FORTUNER", "ALPHARD", "PRIUS", "MR2", "SEQUOIA", "4RUNNER", "HIACE", "CHASER", "GT86", "IST", "SUPRA", "CALDINA", "PREVIA", "ALTEZZA", "ESTIMA", "IQ", "ARISTO", "CARINA", "WINDOM", "CROWN", "CRESTA", "BB", "VOXY", "NOAH", "HARRIER", "PROBOX", "OPA", "IPSUM", "VITZ", "SIENTA", "VEROSSA", "PROGRES", "PASSO", "ISIS", "FUNCARGO", "SUCCEED", "TACOMA", "AVALON", "CORONA", "RAUM", "LAND_CRUISER_PRADO", "LAND_CRUISER", "VOLTZ", "MARK_II", "MARK_X", "C_HR", "TOWN_ACE", "TOURING_HIACE", "PRIUS_ALPHA", "ALLION", "SPRINTER", "PLATZ", "PREMIO", "COROLLA_SPACIO", "VISTA", "NADIA", "AVENSIS_VERSO", "ALLEX", "FJ_CRUISER", "STARLET", "WILL", "CELSIOR", "SPRINTER_TRUENO", "KLUGER", "VELLFIRE", "CROWN_MAJESTA", "VERSO_S", "TERCEL", "CAMRY_SOLARA"],
+            "VOLKSWAGEN": ["POLO", "TOUAREG", "CADDY", "TIGUAN", "MULTIVAN", "CARAVELLE", "PASSAT", "TRANSPORTER", "GOLF", "SHARAN", "JETTA", "TOURAN", "AMAROK", "TERAMONT", "SCIROCCO", "BEETLE", "CORRADO", "EOS", "LUPO", "VENTO", "FOX", "UP", "GOLF_PLUS", "GOLF_GTI", "GOLF_R", "GOLF_R32", "GOLF_COUNTRY", "ARTEON", "PASSAT_CC", "PASSAT_NA", "T-ROC"],
+            "NISSAN": ["TERRANO", "MURANO", "TIIDA", "QASHQAI", "ALMERA", "TEANA", "PATHFINDER", "NOTE", "JUKE", "MARCH", "ARMADA", "NP300", "PRIMERA", "PATROL", "MICRA", "PULSAR", "SKYLINE", "CEDRIC", "SENTRA", "350Z", "300ZX", "FUGA", "MAXIMA", "CUBE", "100NX", "PRESAGE", "LAUREL", "ALTIMA", "AVENIR", "SERENA", "BLUEBIRD", "GLORIA", "EXPERT", "TINO", "JUKE_NISMO", "X_TRAIL", "ALMERA_CLASSIC", "SILVIA", "NAVARA", "PRAIRIE", "QASHQAI_PLUS_2", "SUNNY", "PRESEA", "DUALIS", "BLUEBIRD_SYLPHY", "GT_R", "MOCO", "MISTRAL", "LAFESTA", "CEFIRO", "LIBERTY", "LATIO", "ROGUE", "XTERRA", "LEOPARD", "SAFARI", "CREW", "CITAN", "FAIRLADY_Z", "ATLAS", "AD", "180SX"],
+            "MITSUBISHI": ["ASX", "OUTLANDER", "LANCER", "PAJERO", "CARISMA", "GALANT", "MONTERO", "L200", "GRANDIS", "ECLIPSE", "COLT", "DIAMANTE", "RVR", "DINGO", "PAJERO_SPORT", "SPACE_WAGON", "SPACE_STAR", "MIRAGE", "DELICA_D_5", "AIRTREK", "EK_WAGON", "DELICA_D2", "PAJERO_PININ", "SPACE_RUNNER", "LANCER_EVOLUTION", "ASPIRE", "SIGMA", "LIBERO", "MINICA", "GTO", "DEBONAIR", "TOPPO", "LANCER_RALLIART", "SPACE_GEAR", "EK_CUSTOM", "EK_SPACE", "EK_SPORT", "PAJERO_IO", "CELESTE", "DION", "3000_GT", "GALANT_FORTIS", "LANCER CEDIA"],
+            "SKODA": ["OCTAVIA", "YETI", "FABIA", "KODIAQ", "SUPERB", "RAPID", "ROOMSTER", "FELICIA", "KAROQ", "OCTAVIA_RS", "FABIA_RS", "FORMAN", "FAVORIT"],
+            "HONDA": ["CROSSTOUR", "CIVIC", "PILOT", "ACCORD", "RIDGELINE", "JAZZ", "INSPIRE", "LEGEND", "FIT", "SHUTTLE", "STREAM", "RAFAGA", "ORTHIA", "ODYSSEY", "ZEST", "EMERAUDE", "PRELUDE", "LIFE", "ELYSION", "VEZEL", "FREED", "CONCERTO", "ASCOT", "INTEGRA", "FR_V", "GRACE", "FIT_SHUTTLE", "DOMANI", "N_BOX", "CIVIC_TYPE_R", "HR_V", "STEPWAGON", "N_WGN", "S660", "S2000", "AIRWAVE", "CROSSROAD", "PARTNER", "N_ONE", "CR_Z", "VIGOR", "TODAY", "VAMOS", "ASCOT_INNOVA", "BEAT", "CR_V"],
+            "INFINITI": ["EX", "QX80", "FX", "QX50", "QX56", "JX", "QX70", "G", "QX60", "M", "Q70", "Q50", "Q", "Q30", "Q60", "QX30", "G35", "G37"],
+            "LEXUS": ["RX", "ES", "LS", "NX", "LX", "CT", "GS", "LC", "GX", "IS", "RC", "UX", "SC", "LM", "GS_F", "IS200", "IS300"],
+            "MERCEDES-BENZ": ["SL_KLASSE_AMG", "E_KLASSE", "CLA_KLASSE", "S_CLASS_MAYBACH", "S_KLASSE", "GL_KLASSE", "M_KLASSE", "G_KLASSE", "V_KLASSE", "GLS_KLASSE", "GLE_KLASSE_COUPE", "C_KLASSE", "GLA_CLASS", "CLS_KLASSE", "GLC_KLASSE_AMG", "GLE_KLASSE_AMG", "E_KLASSE_AMG", "GLC_COUPE", "GLE_KLASSE", "A_KLASSE", "VITO", "G_KLASSE_AMG", "GLK_KLASSE", "VIANO", "S_KLASSE_AMG", "GLC_KLASSE", "M_KLASSE_AMG", "W124", "GLE_KLASSE_COUPE_AMG", "GL_KLASSE_AMG", "CL_KLASSE_AMG", "GLB_KLASSE", "CLK_KLASSE", "C_KLASSE_AMG", "B_KLASSE", "AMG_GT", "CLS_KLASSE_AMG", "GLS_KLASSE_AMG", "CL_KLASSE", "GLA_CLASS_AMG", "R_KLASSE", "VANEO", "CLA_KLASSE_AMG", "SLK_KLASSE", "SL_KLASSE", "X_KLASSE", "CLC_KLASSE", "190_SL", "SLS_AMG", "A_KLASSE_AMG", "SLK_KLASSE_AMG", "SLR_KLASSE", "SLC_KLASSE", "W188", "AMG_GLC_COUPE", "W186", "W189", "SLC_KLASSE_AMG", "CLK_KLASSE_AMG", "W123", "W201", "W187", "C-CLASS", "E-CLASS", "S-CLASS", "G-CLASS", "CLS-CLASS", "CLK-CLASS", "A-CLASS", "CLA-CLASS"],
+            "SUBARU": ["IMPREZA", "JUSTY", "OUTBACK", "WRX", "IMPREZA WRX STI", "IMPREZA WRX", "FORESTER", "LEGACY"],
+            "RENAULT": ["LOGAN", "MEGANE", "LAGUNA", "TALISMAN", "CLIO", "DUSTER", "KAPTUR", "ARKANA", "SANDERO", "LOGAN STEPWAY"],
+            "PORSCHE": ["CAYENNE", "MACAN", "PANAMERA", "911"],
+            "LAND ROVER": ["RANGE ROVER", "DISCOVERY", "RANGE ROVER EVOQUE", "FREELANDER", "DEFENDER"],
+            "FORD": ["FUSION", "FOCUS", "MONDEO", "EXPLORER", "FIESTA", "MUSTANG", "KUGA", "RANGER", "TRANSIT"],
+            "LADA": ["GRANTA", "NIVA LEGEND", "LARGUS", "VESTA", "2114 SAMARA", "ПРИОРА", "2112", "4X4 URBAN", "GRANTA CROSS", "VESTA CROSS", "GRANTA SPORT", "4X4 BRONTO", "KALINA"],
+            "SUZUKI": ["JIMNY", "SWIFT", "KEI", "SX4", "GRAND VITARA", "VITARA", "ESCUDO", "IGNIS"],
+            "KIA": ["RIO", "SPORTAGE", "PICANTO", "SORENTO", "SOUL", "CERATO", "CEED", "OPTIMA", "FORTE", "K3", "K5", "STINGER", "SELTOS", "MOHAVE"],
+            "CHEVROLET": ["AVEO", "MALIBU", "LACETTI", "CORSA", "TAHOE", "COBALT", "CRUZE", "ORLANDO", "CAPTIVA", "LANOS", "SPARK"],
+            "HYUNDAI": ["I30", "SOLARIS", "ACCENT", "GETZ", "ELANTRA", "I40", "AVANTE", "VERNA", "CRETA", "TUCSON", "SANTA FE", "SONATA", "H-1"],
+            "MAZDA": ["MAZDA6", "MAZDA3", "MAZDA2", "AXELA", "ATENZA", "ROADSTER", "RX-8", "CX-5", "CX-7", "CX-9", "DEMIO"],
+            "CHANGAN": ["UNI-V", "CS35", "CS55", "CS75"],
+            "JEEP": ["WRANGLER", "CHEROKEE", "GRAND CHEROKEE", "COMPASS", "RENEGADE"],
+            "OPEL": ["CORSA", "VECTRA", "INSIGNIA", "ASTRA", "MOKKA", "ZAFIRA", "ANTARA"],
+            "PEUGEOT": ["308", "307", "508", "5008", "206", "207", "408"],
+            "CADILLAC": ["ESCALADE", "CTS", "SRX", "ATS", "XT5"],
+            "CHERY": ["M11", "TIGGO", "TIGGO 4", "TIGGO 7", "TIGGO 8", "ARIYA", "EMGRAND EC7"],
+            "DAEWOO": ["NEXIA", "MATIZ", "GENTRA"],
+            "CITROEN": ["C5", "C4", "C3", "BERLINGO"],
+            "MINI": ["HATCH", "COUNTRYMAN", "CLUBMAN"],
+            "SMART": ["FORTWO", "FORFOUR"],
+            "CHRYSLER": ["300C", "VOYAGER"],
+            "JAGUAR": ["XF", "XJ", "F-PACE"],
+            "SAAB": ["9-3", "9-5"],
+            "GEELY": ["COOLRAY", "TUGELLA", "MONJARO", "ATLAS"],
+            "DAIHATSU": ["TAFT", "HIJET", "ROCKY", "COPEN", "TERIOS"],
+            "SEAT": ["LEON", "IBIZA"],
+            "ISUZU": ["BIGHORN", "D-MAX"],
+            "FAW": ["BESTUNE B70", "X40"],
+            "JAC": ["J7", "S3", "S5"],
+            "SSANGYONG": ["KORANDO", "ACTYON", "KYRON", "REXTON"],
+            "BENTLEY": ["CONTINENTAL GT", "BENTAYGA"],
+            "MG": ["5", "HS", "ZS"],
+            "GENESIS": ["GENESIS", "G70", "G80", "GV80"],
+            "HUMMER": ["H2", "H3"],
+            "DODGE": ["RAM", "CHARGER", "CHALLENGER", "CALIBER"],
+            "BAIC": ["BJ40", "X35"],
+            "VOYAH": ["FREE", "DREAM"],
+            "HONGQI": ["H5", "H9"],
+            "GAC": ["GS8", "GN8"],
+            "GMC": ["YUKON", "SIERRA"]
+        };
+        const allBrands = Object.keys(carDictionary).sort();
+        const brandInput = document.getElementById('iBrand');
+        const modelInput = document.getElementById('iModel');
+        const brandList = document.getElementById('brands-list');
+        const modelList = document.getElementById('models-list');
+
+        allBrands.forEach(brand => {
+            const opt = document.createElement('option');
+            opt.value = brand;
+            brandList.appendChild(opt);
+        });
+
+
+        brandInput.addEventListener('input', function() {
+            const val = this.value.toUpperCase(); 
+            
+            if (carDictionary[val]) {
+                modelInput.disabled = false;
+                modelInput.placeholder = "Начните вводить модель...";
+                
+
+                modelList.innerHTML = '';
+                carDictionary[val].forEach(model => {
+                    const opt = document.createElement('option');
+                    opt.value = model;
+                    modelList.appendChild(opt);
+                });
+            } else {
+                modelInput.disabled = true;
+                modelInput.value = '';
+                modelInput.placeholder = "Выберите марку из списка";
+            }
+        });
+
+        brandInput.addEventListener('change', function() {
+            if (!carDictionary[this.value.toUpperCase()]) {
+                alert("Пожалуйста, выберите марку из списка!");
+                this.value = '';
+                modelInput.disabled = true;
+            }
+        });
+
+        modelInput.addEventListener('change', function() {
+            const brand = brandInput.value.toUpperCase();
+            if (brand && carDictionary[brand]) {
+                if (!carDictionary[brand].includes(this.value.toUpperCase())) {
+                    alert("Такой модели нет у бренда " + brand);
+                    this.value = '';
+                }
+            }
+        });
+
+        document.getElementById('carForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const price = parseFloat(document.getElementById('iPrice').value);
+            
+
+            const formData = {
+                brand: document.getElementById('iBrand').value.toUpperCase(),
+                model: document.getElementById('iModel').value.toUpperCase(),
+                production_date: parseInt(document.getElementById('iYear').value),
+                mileage: parseInt(document.getElementById('iMileage').value),
+                engine_displacement: parseFloat(document.getElementById('iEngineDisp').value),
+                engine_power: parseInt(document.getElementById('iPower').value),
+                price: price,
+                description: document.getElementById('iDesc').value,
+                bodytype: document.getElementById('iBody').value.toLowerCase(),
+                color: document.getElementById('iColor').value.toLowerCase(),
+                fuel_type: document.getElementById('iFuel').value.toLowerCase(),
+                vehicle_transmission: document.getElementById('iTrans').value.toLowerCase(),
+                owners: parseInt(document.getElementById('iOwners').value),
+                drive_type: document.getElementById('iDrive').value.toLowerCase(),
+                wheel: document.getElementById('iWheel').value,
+                vin: document.getElementById('iVin').value,
+                state_number: document.getElementById('iStateNum').value,
+                photos: document.getElementById('iPhoto').value ? [document.getElementById('iPhoto').value] : []
+            };
+
+            try {
+                const response = await fetch('/api/cars', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    alert('Автомобиль успешно добавлен!');
+                    closeModal();
+                    loadUserCars(); 
+                } else {
+                    const error = await response.json();
+                    if (error.detail && Array.isArray(error.detail)) {
+                        alert("Ошибка: " + error.detail[0].msg + " (поле " + error.detail[0].loc.join('.') + ")");
+                    } else {
+                        alert('Ошибка добавления: ' + (error.detail || 'Неизвестная ошибка'));
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Ошибка сети.');
+            }
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserCars();
+        });
+    </script>
+    <script src="/static/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+:root {
+    --primary-color: #0056b3;
+    --background-light: #f8f9fa;
+    --text-light: #343A40;
+    --white: #ffffff;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #6c757d;
+    --gray-700: #495057;
+    --gray-800: #343a40;
+    --border-radius: 0.25rem;
+    --border-radius-lg: 0.5rem;
+    --border-radius-xl: 0.75rem;
+    --border-radius-full: 9999px;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.logo-link:hover {
+    color: inherit;
+}
+
+/* Стили для заголовка страницы */
+.page-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 0.5rem;
+}
+
+.page-subtitle {
+    color: var(--gray-600);
+    font-size: 1rem;
+}
+
+/* Стили для карточек истории */
+.history-card {
+    position: relative;
+    opacity: 0.9;
+    transition: all 0.3s;
+}
+
+.history-card:hover {
+    opacity: 1;
+    transform: translateY(-0.25rem);
+}
+
+.sale-info {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray-200);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sale-date,
+.sale-time {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--gray-600);
+}
+
+.sale-date .material-symbols-outlined,
+.sale-time .material-symbols-outlined {
+    font-size: 1rem;
+}
+
+/* Активный пункт в выпадающем меню */
+.dropdown-item.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+    .page-title {
+        color: #ffffff;
+    }
+
+    .sale-info {
+        border-top-color: #4A5568;
+    }
+
+    .sale-date,
+    .sale-time {
+        color: #9ca3af;
+    }
+
+    .history-card {
+        background-color: #1C2A38;
+    }
+
+    .car-info {
+        background-color: #1C2A38;
+    }
+
+    .car-title,
+    .car-price {
+        color: #ffffff;
+    }
+
+    .car-details {
+        color: #9ca3af;
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 1.75rem;
+    }
+
+    .sale-info {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+}

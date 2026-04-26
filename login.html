@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html class="light" lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Sellcar - Вход в аккаунт</title>
+    <link href="/static/style.css" rel="stylesheet"/>
+    <link href="/static/style2.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+</head>
+<body>
+    <div class="page-container">
+        <header class="header">
+            <div class="header-container">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <div class="logo">
+                            <span class="material-symbols-outlined logo-icon">directions_car</span>
+                            <h1 class="logo-text">Sellcar</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="main-content">
+            <div class="content-container">
+                <div class="auth-container">
+                    <div class="auth-card visible" id="loginCard">
+                        <div class="auth-header">
+                            <h2 class="auth-title">Войдите в аккаунт</h2>
+                            <p class="auth-subtitle">Введите логин и пароль для входа</p>
+                        </div>
+                        
+                        <form class="auth-form" id="loginForm">
+                            <div class="form-group">
+                                <label class="form-label" for="login">Логин</label>
+                                <div class="input-container">
+                                    <span class="material-symbols-outlined input-icon">person</span>
+                                    <input class="form-input" type="text" id="login" placeholder="Введите ваш логин" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="password">Пароль</label>
+                                <div class="input-container">
+                                    <span class="material-symbols-outlined input-icon">lock</span>
+                                    <input class="form-input" type="password" id="password" placeholder="Введите пароль" required>
+                                    <button type="button" class="password-toggle">
+                                        <span class="material-symbols-outlined">visibility</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-options">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="remember">
+                                    <span class="checkmark"></span>
+                                    Запомнить меня
+                                </label>
+                                <a href="forgot-password.html" class="forgot-link">Забыли пароль?</a>
+                            </div>
+                            
+                            <button type="submit" class="auth-button auth-button-primary">
+                                Войти
+                            </button>
+                        </form>
+                        
+                        <div class="auth-footer">
+                            <p class="auth-footer-text">
+                                Еще нет аккаунта? 
+                                <a href="#" class="auth-link" id="showRegister">Зарегистрируйтесь</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="auth-card hidden" id="registerCard">
+                        <div class="auth-header">
+                            <h2 class="auth-title">Создайте аккаунт</h2>
+                            <p class="auth-subtitle">Заполните данные для регистрации</p>
+                        </div>
+                        
+                        <form class="auth-form" id="registerForm">
+                            <div class="form-group">
+                                <label class="form-label" for="regFirstName">Имя</label>
+                                <div class="input-container">
+                                    <span class="material-symbols-outlined input-icon">badge</span>
+                                    <input class="form-input" type="text" id="regFirstName" placeholder="Ваше имя" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="regLastName">Фамилия</label>
+                                <div class="input-container">
+                                    <span class="material-symbols-outlined input-icon">badge</span>
+                                    <input class="form-input" type="text" id="regLastName" placeholder="Ваша фамилия" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="regLogin">Логин</label>
+                                <div class="input-container">
+                                    <span class="material-symbols-outlined input-icon">person</span>
+                                    <input class="form-input" type="text" id="regLogin" placeholder="Придумайте логин" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="regPhone">Номер телефона</label>
+                                <div class="input-container">
+                                    <span class="material-symbols-outlined input-icon">phone</span>
+                                    <input class="form-input" type="tel" id="regPhone" placeholder="+7 (___) ___-__-__" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="regPassword">Пароль</label>
+                                <div class="input-container">
+                                    <span class="material-symbols-outlined input-icon">lock</span>
+                                    <input class="form-input" type="password" id="regPassword" placeholder="Придумайте пароль" required>
+                                    <button type="button" class="password-toggle">
+                                        <span class="material-symbols-outlined">visibility</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="regConfirmPassword">Подтвердите пароль</label>
+                                <div class="input-container">
+                                    <span class="material-symbols-outlined input-icon">lock</span>
+                                    <input class="form-input" type="password" id="regConfirmPassword" placeholder="Повторите пароль" required>
+                                    <button type="button" class="password-toggle">
+                                        <span class="material-symbols-outlined">visibility</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-options">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="agreeTerms" required>
+                                    <span class="checkmark"></span>
+                                    Я согласен с <a href="#" class="inline-link">условиями использования</a>
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="auth-button auth-button-primary">
+                                Зарегистрироваться
+                            </button>
+                        </form>
+                        
+                        <div class="auth-footer">
+                            <p class="auth-footer-text">
+                                Уже есть аккаунт? 
+                                <a href="#" class="auth-link" id="showLogin">Войдите</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Terms</a>
+                    <span class="footer-separator">|</span>
+                    <a href="#" class="footer-link">Privacy</a>
+                    <span class="footer-separator">|</span>
+                    <a href="#" class="footer-link">About</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2025 Sellcar. Все права защищены.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+            function setupPasswordToggle() {
+                document.querySelectorAll('.password-toggle').forEach(toggle => {
+                    toggle.addEventListener('click', function() {
+                        const passwordInput = this.parentElement.querySelector('input');
+                        const icon = this.querySelector('span');
+                        
+                        if (passwordInput.type === 'password') {
+                            passwordInput.type = 'text';
+                            icon.textContent = 'visibility_off';
+                        } else {
+                            passwordInput.type = 'password';
+                            icon.textContent = 'visibility';
+                        }
+                    });
+                });
+            }
+
+            function handlePhoneInput(e) {
+                let input = e.target;
+                let matrix = "+7 (___) ___-__-__";
+                let i = 0;
+                let def = matrix.replace(/\D/g, "");
+                let val = input.value.replace(/\D/g, "");
+
+                if (def.length >= val.length) val = def;
+
+                input.value = matrix.replace(/./g, function(a) {
+                    return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a;
+                });
+
+
+                if (e.type === "input") {
+                    let lastDigitIndex = input.value.search(/_|(?!.*\d)/);
+                    if (lastDigitIndex === -1) lastDigitIndex = input.value.length;
+                    if (input.value.length <= 4) lastDigitIndex = 4;
+                }
+
+                if (e.type === "blur") {
+                    if (input.value.length === 2) input.value = "";
+                }
+            }
+
+
+            function setupPhoneInput() {
+                const phoneInput = document.getElementById('regPhone');
+                if (phoneInput) {
+                    phoneInput.addEventListener("input", handlePhoneInput);
+                    phoneInput.addEventListener("focus", handlePhoneInput);
+                    phoneInput.addEventListener("blur", handlePhoneInput);
+                    
+
+                    phoneInput.addEventListener("click", function() {
+                        if (this.value.length <= 4) {
+                            this.setSelectionRange(4, 4);
+                        }
+                    });
+                }
+            }
+
+            function switchForm(fromCard, toCard) {
+                fromCard.classList.remove('visible');
+                fromCard.classList.add('hidden');
+                
+                setTimeout(() => {
+                    fromCard.style.display = 'none';
+                    toCard.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        toCard.classList.remove('hidden');
+                        toCard.classList.add('visible');
+                    }, 50);
+                }, 400);
+            }
+
+
+            function showNotification(message, isSuccess = true) {
+
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 16px 20px;
+                    border-radius: 8px;
+                    color: white;
+                    font-weight: 500;
+                    z-index: 1000;
+                    opacity: 0;
+                    transform: translateX(100%);
+                    transition: all 0.3s ease;
+                    max-width: 300px;
+                    background-color: ${isSuccess ? '#10b981' : '#ef4444'};
+                    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                `;
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+
+                setTimeout(() => {
+                    notification.style.opacity = '1';
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+                
+
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                }, 4000);
+            }
+
+
+            function validateLogin(login) {
+                return login.length >= 3;
+            }
+
+
+            function validatePassword(password) {
+                return password.length >= 6;
+            }
+
+            function validatePhone(phone) {
+                const cleaned = phone.replace(/\D/g, '');
+                return cleaned.length === 11 || cleaned.length === 10;
+            }
+
+
+            document.getElementById('registerForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const password = document.getElementById('regPassword').value;
+                const confirmPassword = document.getElementById('regConfirmPassword').value;
+                const firstName = document.getElementById('regFirstName').value.trim();
+                const lastName = document.getElementById('regLastName').value.trim();
+                const login = document.getElementById('regLogin').value.trim();
+                const phone = document.getElementById('regPhone').value;
+                
+
+                if (!firstName) {
+                    showNotification('Введите имя', false);
+                    return;
+                }
+                
+                if (!validateLogin(login)) {
+                    showNotification('Логин должен содержать минимум 3 символа', false);
+                    return;
+                }
+                
+                if (!validatePhone(phone)) {
+                    showNotification('Введите корректный номер телефона', false);
+                    return;
+                }
+                
+                if (!validatePassword(password)) {
+                    showNotification('Пароль должен содержать минимум 6 символов', false);
+                    return;
+                }
+                
+                if (password !== confirmPassword) {
+                    showNotification('Пароли не совпадают!', false);
+                    return;
+                }
+                
+                if (!document.getElementById('agreeTerms').checked) {
+                    showNotification('Необходимо согласие с условиями использования', false);
+                    return;
+                }
+                
+                const formData = {
+                    login: login,
+                    password: password,
+                    first_name: firstName,
+                    last_name: lastName || null,
+                    phone: phone
+                };
+                
+                try {
+
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'Регистрация...';
+                    submitBtn.disabled = true;
+                    
+                    const response = await fetch('/api/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    if (response.ok) {
+
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 100);
+                    } else {
+                        const error = await response.json();
+                        showNotification('Ошибка регистрации: ' + error.detail, false);
+                    }
+                } catch (error) {
+                    showNotification('Ошибка сети: ' + error.message, false);
+                } finally {
+
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    submitBtn.textContent = 'Зарегистрироваться';
+                    submitBtn.disabled = false;
+                }
+            });
+
+
+            document.getElementById('loginForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const login = document.getElementById('login').value.trim();
+                const password = document.getElementById('password').value;
+                
+                if (!login || !password) {
+                    showNotification('Заполните все поля', false);
+                    return;
+                }
+                
+                const formData = {
+                    login: login,
+                    password: password
+                };
+                
+                try {
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'Вход...';
+                    submitBtn.disabled = true;
+                    
+                    const response = await fetch('/api/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    if (response.ok) {
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 100);
+                    } else {
+                        const error = await response.json();
+                        showNotification('Ошибка входа: ' + error.detail, false);
+                    }
+                } catch (error) {
+                    showNotification('Ошибка сети: ' + error.message, false);
+                } finally {
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    submitBtn.textContent = 'Войти';
+                    submitBtn.disabled = false;
+                }
+            });
+
+            document.getElementById('showRegister').addEventListener('click', function(e) {
+                e.preventDefault();
+                const loginCard = document.getElementById('loginCard');
+                const registerCard = document.getElementById('registerCard');
+                switchForm(loginCard, registerCard);
+            });
+
+            document.getElementById('showLogin').addEventListener('click', function(e) {
+                e.preventDefault();
+                const loginCard = document.getElementById('loginCard');
+                const registerCard = document.getElementById('registerCard');
+                switchForm(registerCard, loginCard);
+            });
+
+
+            document.addEventListener('DOMContentLoaded', function() {
+                setupPasswordToggle();
+                setupPhoneInput();
+                
+  
+                const loginCard = document.getElementById('loginCard');
+                loginCard.style.display = 'block';
+                
+
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('form') === 'register') {
+                    const loginCard = document.getElementById('loginCard');
+                    const registerCard = document.getElementById('registerCard');
+                    loginCard.style.display = 'none';
+                    registerCard.style.display = 'block';
+                    registerCard.classList.remove('hidden');
+                    registerCard.classList.add('visible');
+                }
+                
+
+                const passwordInput = document.getElementById('regPassword');
+                const confirmPasswordInput = document.getElementById('regConfirmPassword');
+                
+                if (passwordInput && confirmPasswordInput) {
+                    confirmPasswordInput.addEventListener('input', function() {
+                        const password = passwordInput.value;
+                        const confirmPassword = this.value;
+                        
+                        if (confirmPassword && password !== confirmPassword) {
+                            this.style.borderColor = '#ef4444';
+                        } else {
+                            this.style.borderColor = '';
+                        }
+                    });
+                }
+            });
+        </script>
+        <script src="/static/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,504 @@
+:root {
+    --primary-color: #0056b3;
+    --background-light: #f8f9fa;
+    --text-light: #343A40;
+    --white: #ffffff;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #6c757d;
+    --gray-700: #495057;
+    --gray-800: #343a40;
+    --border-radius: 0.25rem;
+    --border-radius-lg: 0.5rem;
+    --border-radius-xl: 0.75rem;
+    --border-radius-full: 9999px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000;
+}
+
+/* Стили для карточек в "Моих продажах" - исправлены для темной темы */
+.car-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--border-radius-xl);
+    background-color: var(--white);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+.car-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transform: translateY(-0.25rem);
+}
+
+.car-info {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: var(--white);
+}
+
+.car-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #000;
+}
+
+.price-section {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.car-price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #000;
+}
+
+.price-badge {
+    display: flex;
+    height: 1.75rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: var(--border-radius);
+    padding: 0 0.75rem;
+}
+
+.price-badge-green {
+    background-color: #dcfce7;
+}
+
+.price-badge-orange {
+    background-color: #ffedd5;
+}
+
+.price-badge-red {
+    background-color: #fee2e2;
+}
+
+.badge-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.price-badge-green .badge-text {
+    color: #166534;
+}
+
+.price-badge-orange .badge-text {
+    color: #9a3412;
+}
+
+.price-badge-red .badge-text {
+    color: #991b1b;
+}
+
+.car-details {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--gray-600);
+}
+
+/* Кнопки действий в карточках */
+.car-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+
+.action-button {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex: 1;
+    justify-content: center;
+}
+
+.edit-button {
+    background-color: var(--gray-100);
+    color: var(--gray-700);
+}
+
+.edit-button:hover {
+    background-color: var(--gray-200);
+}
+
+.delete-button {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.delete-button:hover {
+    background-color: #fecaca;
+}
+
+/* Карточка для добавления нового автомобиля */
+.add-new-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--gray-300);
+    background-color: var(--gray-50);
+    cursor: pointer;
+    transition: all 0.3s;
+    min-height: 300px;
+}
+
+.add-new-card:hover {
+    border-color: var(--primary-color);
+    background-color: var(--gray-100);
+    transform: translateY(-0.25rem);
+}
+
+.add-new-content {
+    text-align: center;
+    color: var(--gray-600);
+}
+
+.add-icon {
+    font-size: 3rem;
+    color: var(--gray-400);
+    margin-bottom: 1rem;
+}
+
+.add-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--gray-700);
+    margin-bottom: 0.5rem;
+}
+
+.add-subtitle {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+}
+
+/* Модальное окно */
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.logo-link:hover {
+    color: inherit;
+}
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--white);
+    border-radius: var(--border-radius-xl);
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    -ms-overflow-style: none;  /* IE и Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+
+.modal-content::-webkit-scrollbar {
+    display: none;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--gray-500);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: var(--border-radius);
+}
+
+.modal-close:hover {
+    background-color: var(--gray-100);
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray-700);
+    margin-bottom: 0.5rem;
+}
+
+.form-input, .form-textarea {
+    padding: 0.75rem;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--border-radius);
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    background-color: var(--white);
+}
+
+.form-input:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray-200);
+}
+
+.modal-button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.modal-button-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.modal-button-primary:hover {
+    background-color: #004494;
+}
+
+.modal-button-secondary {
+    background-color: var(--gray-100);
+    color: var(--gray-700);
+}
+
+.modal-button-secondary:hover {
+    background-color: var(--gray-200);
+}
+
+/* Активный пункт в выпадающем меню */
+.dropdown-item.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Темная тема - исправленные стили */
+@media (prefers-color-scheme: dark) {
+    .page-title {
+        color: #ffffff;
+    }
+
+    .car-card {
+        background-color: #1C2A38;
+    }
+
+    .car-info {
+        background-color: #1C2A38;
+    }
+
+    .car-title,
+    .car-price {
+        color: #ffffff;
+    }
+
+    .car-details {
+        color: #9ca3af;
+    }
+
+    .add-new-card {
+        background-color: #2D3748;
+        border-color: #4A5568;
+    }
+
+    .add-new-card:hover {
+        border-color: var(--primary-color);
+        background-color: #374151;
+    }
+
+    .add-title {
+        color: #e2e8f0;
+    }
+
+    .add-subtitle {
+        color: #9ca3af;
+    }
+
+    .car-actions {
+        border-top-color: #4A5568;
+    }
+
+    .edit-button {
+        background-color: #374151;
+        color: #d1d5db;
+    }
+
+    .edit-button:hover {
+        background-color: #4B5563;
+    }
+
+    .delete-button {
+        background-color: rgba(239, 68, 68, 0.2);
+        color: #fca5a5;
+    }
+
+    .delete-button:hover {
+        background-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .modal-content {
+        background-color: #1C2A38;
+    }
+
+    .modal-title {
+        color: #ffffff;
+    }
+
+    .form-input, .form-textarea {
+        background-color: #2D3748;
+        border-color: #4A5568;
+        color: #e2e8f0;
+    }
+
+    .modal-button-secondary {
+        background-color: #374151;
+        color: #d1d5db;
+    }
+
+    .modal-button-secondary:hover {
+        background-color: #4B5563;
+    }
+
+    /* Исправленные бейджи для темной темы */
+    .price-badge-green {
+        background-color: rgba(34, 197, 94, 0.2);
+    }
+
+    .price-badge-orange {
+        background-color: rgba(249, 115, 22, 0.2);
+    }
+
+    .price-badge-red {
+        background-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .price-badge-green .badge-text {
+        color: #4ade80;
+    }
+
+    .price-badge-orange .badge-text {
+        color: #fdba74;
+    }
+
+    .price-badge-red .badge-text {
+        color: #fca5a5;
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .page-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    .car-actions {
+        flex-direction: column;
+    }
+}

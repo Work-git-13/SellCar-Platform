@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html class="light" lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Sellcar - Детали автомобиля</title>
+    <link href="/static/style.css" rel="stylesheet"/>
+    <link href="/static/car-details.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+</head>
+<body>
+    <div class="page-container">
+        <header class="header">
+            <div class="header-container">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <a href="/index.html" class="logo">
+                            <span class="material-symbols-outlined logo-icon">directions_car</span>
+                            <h1 class="logo-text">Sellcar</h1>
+                        </a>
+                    </div>
+                    <div class="search-section">
+                        <div class="search-container">
+                            <label class="search-label">
+                                <span class="material-symbols-outlined search-icon">search</span>
+                                <input class="search-input" placeholder="Поиск по марке, модели или ключевому слову" type="text"/>
+                                <button class="search-filter-button">
+                                    <span class="material-symbols-outlined">tune</span>
+                                </button>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="user-section">
+                        <div class="user-dropdown">
+                            <button class="user-button">
+                                <img class="user-avatar" data-alt="User avatar" src="/static/default-avatar.png"/>
+                                <span class="user-name">John Doe</span>
+                                <span class="material-symbols-outlined dropdown-icon">expand_more</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-content" aria-labelledby="options-menu" aria-orientation="vertical" role="menu">
+                                    <a class="dropdown-item" href="/index.html" role="menuitem">Главная</a>
+                                    <a class="dropdown-item" href="/profile.html" role="menuitem">Мой профиль</a>
+                                    <a class="dropdown-item" href="/sales.html" role="menuitem">Мои продажи</a>
+                                    <a class="dropdown-item" href="/favorites.html" role="menuitem">Избранное</a>
+                                    <a class="dropdown-item logout-item" href="#" role="menuitem">Выход</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <div class="content-container">
+                <div class="breadcrumb">
+                    <a href="/index.html" class="breadcrumb-link">Главная</a>
+                    <span class="material-symbols-outlined breadcrumb-arrow">chevron_right</span>
+                    <span class="breadcrumb-current">Детали автомобиля</span>
+                </div>
+                
+                <div class="car-header-block">
+                    <div class="car-gallery-section">
+                        <div class="main-image-container">
+                            <div class="main-image" id="main-image"></div>
+                            <button class="favorite-button" id="favorite-btn">
+                                <span class="material-symbols-outlined">favorite_border</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="car-info-block">
+                        <h1 class="car-title" id="car-title">Название автомобиля</h1>
+                        <div class="price-section">
+                            <p class="car-price" id="car-price">1 500 000 ₽</p>
+                            <div class="price-badge price-badge-green">
+                                <p class="badge-text">Отличная цена</p>
+                            </div>
+                        </div>
+                        <div class="quick-info">
+                            <div class="quick-info-item">
+                                <span class="material-symbols-outlined">calendar_today</span>
+                                <span id="info-year">-</span>
+                            </div>
+                            <div class="quick-info-item">
+                                <span class="material-symbols-outlined">speed</span>
+                                <span id="info-mileage">- км</span>
+                            </div>
+                            <div class="quick-info-item">
+                                <span class="material-symbols-outlined">settings</span>
+                                <span id="info-engine">- л</span>
+                            </div>
+                            <div class="quick-info-item">
+                                <span class="material-symbols-outlined">directions_car</span>
+                                <span id="info-body-type">-</span>
+                            </div>
+                        </div>
+                        <button class="contact-button" id="show-phone-btn">
+                            <span class="material-symbols-outlined">call</span>
+                            Показать телефон
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="description-section">
+                    <h2 class="section-title">Описание</h2>
+                    <div class="description-content" id="car-description">
+                        Загрузка описания...
+                    </div>
+                </div>
+                
+                <div class="specs-section">
+                    <h2 class="section-title">Технические характеристики</h2>
+                    <div class="specs-grid">
+                        <div class="spec-row">
+                            <div class="spec-item">
+                                <span class="spec-label">Марка:</span>
+                                <span class="spec-value" id="spec-brand">-</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Модель:</span>
+                                <span class="spec-value" id="spec-model">-</span>
+                            </div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-item">
+                                <span class="spec-label">Год выпуска:</span>
+                                <span class="spec-value" id="spec-year">-</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Пробег:</span>
+                                <span class="spec-value" id="spec-mileage">-</span>
+                            </div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-item">
+                                <span class="spec-label">Цвет:</span>
+                                <span class="spec-value" id="spec-color">-</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Тип кузова:</span>
+                                <span class="spec-value" id="spec-body-type">-</span>
+                            </div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-item">
+                                <span class="spec-label">Объем двигателя:</span>
+                                <span class="spec-value" id="spec-engine-displacement">-</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Мощность двигателя:</span>
+                                <span class="spec-value" id="spec-engine-power">-</span>
+                            </div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-item">
+                                <span class="spec-label">Тип топлива:</span>
+                                <span class="spec-value" id="spec-fuel-type">-</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Коробка передач:</span>
+                                <span class="spec-value" id="spec-transmission">-</span>
+                            </div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-item">
+                                <span class="spec-label">Привод:</span>
+                                <span class="spec-value" id="spec-drive-type">-</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Руль:</span>
+                                <span class="spec-value" id="spec-wheel">-</span>
+                            </div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-item">
+                                <span class="spec-label">Количество владельцев:</span>
+                                <span class="spec-value" id="spec-owners">-</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">VIN:</span>
+                                <span class="spec-value" id="spec-vin">-</span>
+                            </div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-item full-width">
+                                <span class="spec-label">Госномер:</span>
+                                <span class="spec-value" id="spec-state-number">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="seller-section">
+                    <h2 class="section-title">Продавец</h2>
+                    <div class="seller-info">
+                        <div class="seller-avatar">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9hrfo0l9ZQOaFZMlLuas1gm4VG3lyNyxqsPidb5RH-sAVS7zDuZH6agPq2zERUysqhF5PL_VnwyU8MaSQTHZIsGGPilxphRwwYBA1ST7gaDwBW9WyYBBPpDaoa1m74mLExgkVm0M6Z1OiuBj_DaqsrgXnYHXXAfnKVE-EytrIBdTLAuC27LHl_pUoOT6e-TWepBlW4RPYq7AkXjQOgwSAaRGjxPpePhBJ4qZXgdBOZWLzqRIhY_LikKqRRK-aQKtKkv7q0Dj2_gr2" 
+                                 alt="Аватар продавца" class="seller-avatar-img">
+                        </div>
+                        <div class="seller-details">
+                            <h3 class="seller-name" id="seller-name">Имя продавца</h3>
+                            <div class="seller-stats">
+                                <div class="seller-stat-item">
+                                    <span class="stat-label">Продаётся автомобилей:</span>
+                                    <span class="stat-value" id="seller-sales-count">15</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Terms</a>
+                    <span class="footer-separator">|</span>
+                    <a href="#" class="footer-link">Privacy</a>
+                    <span class="footer-separator">|</span>
+                    <a href="#" class="footer-link">About</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2026 Sellcar. Все права защищены.
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+
+        const iconsFolder = '/static/icon/';
+        const globalDefault = 'static/icon/unknown_photo.png';
+        const bodyTypeMap = {
+            'внедорожник': 'off-road_photo.png',
+            'седан': 'sedan_photo.png',
+            'универсал': 'universal_photo.png',
+            'хэтчбек': 'hatchback_photo.png',
+            'купе': 'coupe_photo.png',
+            'минивэн': 'minivan_photo.png',
+            'пикап': 'pickup_photo.png',  
+            'другие': 'unknown_photo.png',
+        };
+
+        async function loadCarDetails() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const carId = urlParams.get('id');
+                
+                if (!carId) {
+                    console.error('Car ID not found');
+                    return;
+                }
+                
+                const response = await fetch(`/api/cars/${carId}`);
+                if (!response.ok) throw new Error("Автомобиль не найден");
+                const car = await response.json();
+                
+                updateCarDetails(car);
+                
+            } catch (error) {
+                console.error('Error loading car details:', error);
+                document.querySelector('.car-title').textContent = 'Ошибка загрузки данных';
+            }
+        }
+        
+        function updateCarDetails(car) {
+            const currentUserId = window.currentUser ? (window.currentUser.user_id || window.currentUser.id) : null;
+            
+            const carOwnerId = car.user_id; 
+
+            const favBtn = document.getElementById('favorite-btn');
+
+            if (currentUserId && carOwnerId && String(currentUserId) === String(carOwnerId)) {
+                console.log("Это ваше объявление, скрываем лайк");
+                if (favBtn) favBtn.style.display = 'none';
+            } else {
+                if (favBtn) {
+                    favBtn.style.display = 'flex';
+                    checkFavoriteStatus(car.car_id);
+                }
+            }
+            document.getElementById('car-title').textContent = `${car.brand || ''} ${car.model || ''}`;
+            
+            const priceValue = car.price || 0;
+            const price = priceValue.toLocaleString();
+            const priceBadge = document.querySelector('.price-badge');
+            const badgeTextElem = priceBadge.querySelector('.badge-text');
+
+
+            if (priceValue > 7500000 && car.price_range == 0) {
+                priceBadge.className = 'price-badge price-badge-gray';
+                badgeTextElem.textContent = 'Без оценки';
+            } 
+
+            else {
+                if (car.price_range > 1) {
+                    priceBadge.className = 'price-badge price-badge-orange';
+                    badgeTextElem.textContent = 'Низкая цена';
+                } else if (car.price_range < -1) {
+                    priceBadge.className = 'price-badge price-badge-red';
+                    badgeTextElem.textContent = 'Высокая цена';
+                } else {
+                    priceBadge.className = 'price-badge price-badge-green';
+                    badgeTextElem.textContent = 'Хорошая цена';
+                }
+            }
+
+            document.getElementById('car-price').textContent = `${price} ₽`;
+            
+
+            document.getElementById('info-year').textContent = car.year || car.production_date || '-';
+            document.getElementById('info-mileage').textContent = car.mileage ? `${car.mileage.toLocaleString()} км` : '- км';
+            document.getElementById('info-engine').textContent = car.engine_displacement ? `${car.engine_displacement} л` : '- л';
+            document.getElementById('info-body-type').textContent = car.bodytype || '-';
+            
+
+            document.getElementById('spec-brand').textContent = car.brand || '-';
+            document.getElementById('spec-model').textContent = car.model || '-';
+            document.getElementById('spec-year').textContent = car.year || car.production_date || '-';
+            document.getElementById('spec-mileage').textContent = car.mileage ? `${car.mileage.toLocaleString()} км` : '-';
+            document.getElementById('spec-color').textContent = car.color || '-';
+            document.getElementById('spec-body-type').textContent = car.bodytype || '-';
+            document.getElementById('spec-engine-displacement').textContent = car.engine_displacement ? `${car.engine_displacement} л` : '-';
+            document.getElementById('spec-engine-power').textContent = car.engine_power ? `${car.engine_power} л.с.` : '-';
+            document.getElementById('spec-fuel-type').textContent = car.fuel_type || '-';
+            document.getElementById('spec-transmission').textContent = car.vehicle_transmission || '-';
+            document.getElementById('spec-drive-type').textContent = car.drive_type || '-';
+            document.getElementById('spec-wheel').textContent = car.wheel || '-';
+            document.getElementById('spec-owners').textContent = car.owners || '-';
+            document.getElementById('spec-vin').textContent = car.vin || '-';
+            document.getElementById('spec-state-number').textContent = car.state_number || '-';
+            
+
+            document.getElementById('car-description').textContent = car.description || 'Продавец не оставил описания.';
+
+
+            try {
+                const seller = car.seller || {};
+                const fName = seller.first_name || 'Продавец';
+                const lName = seller.last_name || '';
+                
+
+                document.getElementById('seller-name').textContent = `${fName} ${lName}`.trim();
+                
+
+                window.currentCarSellerPhone = seller.seller_phone || 'Номер не указан';
+                
+
+                const salesElem = document.getElementById('seller-sales-count');
+                if (salesElem) salesElem.textContent = seller.sales_count !== undefined ? seller.sales_count : 0;
+                
+            } catch (err) {
+                console.error("Ошибка при заполнении данных продавца:", err);
+            }
+
+
+            const mainImage = document.getElementById('main-image');
+            let photoUrl;
+            if (car.photos && car.photos.length > 0 && car.photos[0].photo_url) {
+                photoUrl = car.photos[0].photo_url;
+            } else {
+                const typeKey = (car.bodytype || '').toLowerCase().trim();
+                photoUrl = bodyTypeMap[typeKey] ? iconsFolder + bodyTypeMap[typeKey] : globalDefault;
+            }
+            mainImage.style.backgroundImage = `url('${photoUrl}')`;
+            
+            checkFavoriteStatus(car.car_id);
+        }
+
+        
+
+        async function checkFavoriteStatus(carId) {
+            try {
+
+                const response = await fetch('/api/user/favorites');
+                if (response.ok) {
+                    const favorites = await response.json();
+   
+                    const isFavorite = favorites.some(fav => fav.car_id === carId);
+                    updateFavoriteButton(isFavorite);
+                }
+            } catch (error) {
+                console.error('Auth check failed', error);
+            }
+        }
+        
+        function updateFavoriteButton(isActive) {
+            const btn = document.getElementById('favorite-btn');
+            const icon = btn.querySelector('span');
+            if (isActive) {
+                btn.classList.add('favorite-active');
+                icon.textContent = 'favorite';
+            } else {
+                btn.classList.remove('favorite-active');
+                icon.textContent = 'favorite_border';
+            }
+        }
+        
+        async function toggleFavorite() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const carId = urlParams.get('id');
+            const btn = document.getElementById('favorite-btn');
+            
+            try {
+                if (btn.classList.contains('favorite-active')) {
+                    await fetch(`/api/favorites/${carId}`, { method: 'DELETE' });
+                    updateFavoriteButton(false);
+                } else {
+                    const res = await fetch(`/api/favorites/${carId}`, { method: 'POST' });
+                    if (res.status === 401) {
+                        window.location.href = '/login';
+                        return;
+                    }
+                    updateFavoriteButton(true);
+                }
+            } catch (error) {
+                console.error('Error toggling favorite:', error);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', async function() { 
+            await loadUserInfo(); 
+            loadCarDetails();
+            
+            const favBtn = document.getElementById('favorite-btn');
+            if (favBtn) favBtn.onclick = toggleFavorite;
+            
+
+            const phoneBtn = document.getElementById('show-phone-btn');
+            if (phoneBtn) {
+                phoneBtn.addEventListener('click', function() {
+
+                    const phone = window.currentCarSellerPhone || 'Номер не указан';
+                    
+
+                    this.innerHTML = `<span class="material-symbols-outlined">call</span> ${phone}`;
+                    
+
+                    this.style.backgroundColor = "#28a745"; 
+                    this.style.color = "white";
+                });
+            }
+        });
+    </script>
+
+
+    <script src="/static/common.js"></script>
+</body>
+</html>

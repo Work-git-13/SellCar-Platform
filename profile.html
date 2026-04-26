@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html class="light" lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Sellcar - Мой профиль</title>
+    <link href="/static/style5.css" rel="stylesheet"/>
+    <link href="/static/style.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+</head>
+<body>
+    <div class="page-container">
+        <header class="header">
+            <div class="header-container">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <a href="index.html" class="logo-link">
+                            <div class="logo">
+                                <span class="material-symbols-outlined logo-icon">directions_car</span>
+                                <h1 class="logo-text">Sellcar</h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="user-section">
+                        <div class="user-dropdown">
+                            <button class="user-button">
+                                <img class="user-avatar" data-alt="User avatar" src="/static/default-avatar.png" onerror="this.src='https://via.placeholder.com/40'"/>
+                                <span class="user-name"></span>
+                                <span class="material-symbols-outlined dropdown-icon">expand_more</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-content" aria-labelledby="options-menu" aria-orientation="vertical" role="menu">
+                                    <a class="dropdown-item" href="/index.html" role="menuitem">Главная</a>
+                                    <a class="dropdown-item" href="/profile.html" role="menuitem">Мой профиль</a>
+                                    <a class="dropdown-item" href="/sales.html" role="menuitem">Мои продажи</a>
+                                    <a class="dropdown-item" href="/favorites.html" role="menuitem">Избранное</a>
+                                    <a class="dropdown-item logout-item" href="#" role="menuitem">Выход</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="main-content">
+            <div class="content-container">
+                <div class="page-header">
+                    <h1 class="page-title">Мой профиль</h1>
+                    <p class="page-subtitle">Управление вашими личными данными</p>
+                </div>
+
+                <div class="profile-container">
+                    <div class="profile-card">
+                        <div class="avatar-section">
+                            <div class="avatar-container">
+                                <img class="profile-avatar" id="profileAvatar" src="/static/default-avatar.png" onerror="this.src='https://via.placeholder.com/40'" alt="Аватар профиля">
+                                <button class="avatar-edit-button" onclick="document.getElementById('avatarInput').click()">
+                                    <span class="material-symbols-outlined">photo_camera</span>
+                                </button>
+                                <input type="file" id="avatarInput" accept="image/*" style="display: none;" onchange="handleAvatarUpload(event)">
+                            </div>
+                            <div class="avatar-info">
+                                <h3 class="avatar-name"></h3>
+                                <p class="avatar-email"></p>
+                            </div>
+                        </div>
+
+                        <form class="profile-form" id="profileForm">
+                            <div class="form-section">
+                                <h3 class="section-title">Личная информация</h3>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label" for="firstName">Имя</label>
+                                        <input type="text" class="form-input" id="firstName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="lastName">Фамилия</label>
+                                        <input type="text" class="form-input" id="lastName" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="login">Логин</label>
+                                    <input type="text" class="form-input" id="login" disabled>
+                                    <p class="form-hint">Логин нельзя изменить</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="phone">Номер телефона</label>
+                                    <input type="tel" class="form-input" id="phone" value="+7 (999) 123-45-67" required>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3 class="section-title">Смена пароля</h3>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="currentPassword">Текущий пароль</label>
+                                    <input type="password" class="form-input" id="currentPassword" placeholder="Введите текущий пароль">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="newPassword">Новый пароль</label>
+                                    <input type="password" class="form-input" id="newPassword" placeholder="Введите новый пароль">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="confirmPassword">Подтвердите новый пароль</label>
+                                    <input type="password" class="form-input" id="confirmPassword" placeholder="Повторите новый пароль">
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="profile-button profile-button-secondary" onclick="resetForm()">Отмена</button>
+                                <button type="submit" class="profile-button profile-button-primary">Сохранить изменения</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Terms</a>
+                    <span class="footer-separator">|</span>
+                    <a href="#" class="footer-link">Privacy</a>
+                    <span class="footer-separator">|</span>
+                    <a href="#" class="footer-link">About</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2025 Sellcar. Все права защищены.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <script>
+        async function loadProfile() {
+        try {
+            const response = await fetch('/api/user');
+            if (!response.ok) throw new Error('Ошибка авторизации');
+            
+            const userInfo = await response.json();
+            
+            if (userInfo.authenticated) {
+                const fields = {
+                    'firstName': userInfo.first_name,
+                    'lastName': userInfo.last_name,
+                    'login': userInfo.login,
+                    'phone': userInfo.phone
+                };
+
+                for (const [id, value] of Object.entries(fields)) {
+                    const el = document.getElementById(id);
+                    if (el) el.value = value || '';
+                }
+
+                const avatarName = document.querySelector('.avatar-name');
+                if (avatarName) {
+                    const fullName = [userInfo.first_name, userInfo.last_name].filter(Boolean).join(' ');
+                    avatarName.textContent = fullName || userInfo.login || 'Пользователь';
+                }
+
+                const avatarEmail = document.querySelector('.avatar-email');
+                if (avatarEmail) {
+                    avatarEmail.textContent = userInfo.email || '';
+                }
+            } else {
+                window.location.href = '/login';
+            }
+        } catch (error) {
+            console.error('Ошибка загрузки профиля:', error);
+        }
+    }
+
+    function handlePhoneInput(e) {
+        let input = e.target;
+        let matrix = "+7 (___) ___-__-__";
+        let i = 0;
+        let def = matrix.replace(/\D/g, "");
+        let val = input.value.replace(/\D/g, "");
+
+        if (def.length >= val.length) val = def;
+
+        input.value = matrix.replace(/./g, function(a) {
+            return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a;
+        });
+
+        if (e.type === "blur") {
+            if (input.value.length === 2) input.value = "";
+        }
+    }
+
+
+    const phoneInput = document.getElementById('phone');
+    if (phoneInput) {
+        phoneInput.addEventListener("input", handlePhoneInput);
+        phoneInput.addEventListener("focus", handlePhoneInput);
+        phoneInput.addEventListener("blur", handlePhoneInput);
+    }
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadProfile();
+        const phoneInput = document.getElementById('phone');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', handlePhoneInput);
+            phoneInput.addEventListener('keydown', (e) => {
+                if (e.target.selectionStart < 3 && (e.key === 'Backspace' || e.key === 'Delete')) {
+                    e.preventDefault();
+                }
+            });
+        }
+
+        const form = document.getElementById('profileForm');
+        if (form) {
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const curPass = document.getElementById('currentPassword').value;
+                const newPass = document.getElementById('newPassword').value;
+                const confPass = document.getElementById('confirmPassword').value;
+
+                if (newPass && newPass !== confPass) {
+                    alert('Новые пароли не совпадают!');
+                    return;
+                }
+
+                const formData = {
+                    first_name: document.getElementById('firstName').value,
+                    last_name: document.getElementById('lastName').value,
+                    phone: document.getElementById('phone').value,
+                    current_password: curPass || null,
+                    new_password: newPass || null
+                };
+                
+                try {
+                    const response = await fetch('/api/user/profile', {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    if (response.ok) {
+                        alert('Профиль успешно обновлен!');
+                        document.getElementById('currentPassword').value = '';
+                        document.getElementById('newPassword').value = '';
+                        document.getElementById('confirmPassword').value = '';
+                        loadProfile(); 
+                    } else {
+                        const error = await response.json();
+                        alert('Ошибка: ' + (error.detail || 'Неизвестная ошибка'));
+                    }
+                } catch (error) {
+                    console.error('Ошибка обновления:', error);
+                    alert('Ошибка сети');
+                }
+            });
+        }
+    });
+
+    function resetForm() {
+        if(confirm('Отменить изменения и перезагрузить данные?')) {
+            loadProfile();
+            document.getElementById('currentPassword').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmPassword').value = '';
+        }
+    }
+    </script>
+    <script src="/static/common.js"></script>
+</body>
+</html>

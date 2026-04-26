@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="light" lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Sellcar - Избранное</title>
+    <link href="/static/style.css" rel="stylesheet"/>
+    <link href="/static/style3.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+</head>
+<body>
+    <div class="page-container">
+        <header class="header">
+            <div class="header-container">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <a href="index.html" class="logo-link">
+                            <div class="logo">
+                                <span class="material-symbols-outlined logo-icon">directions_car</span>
+                                <h1 class="logo-text">Sellcar</h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="user-section">
+                        <div class="user-dropdown">
+                            <button class="user-button">
+                                <img class="user-avatar" data-alt="User avatar" src="/static/default-avatar.png" onerror="this.src='https://via.placeholder.com/40'"/>
+                                <span class="user-name"></span>
+                                <span class="material-symbols-outlined dropdown-icon">expand_more</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-content" aria-labelledby="options-menu" aria-orientation="vertical" role="menu">
+                                    <a class="dropdown-item" href="/index.html" role="menuitem">Главная</a>
+                                    <a class="dropdown-item" href="/profile.html" role="menuitem">Мой профиль</a>
+                                    <a class="dropdown-item" href="/sales.html" role="menuitem">Мои продажи</a>
+                                    <a class="dropdown-item" href="/favorites.html" role="menuitem">Избранное</a>
+                                    <a class="dropdown-item logout-item" href="#" role="menuitem">Выход</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="main-content">
+            <div class="content-container">
+                <div class="page-header">
+                    <h1 class="page-title">Избранное</h1>
+                    <p class="page-subtitle">Автомобили, которые вы добавили в избранное</p>
+                </div>
+
+
+                <div class="cars-grid" id="favoritesGrid">
+
+                </div>
+
+                <div class="empty-favorites" id="emptyFavorites" style="display: none;">
+                    <div class="empty-content">
+                        <span class="material-symbols-outlined empty-icon">favorite</span>
+                        <h3 class="empty-title">В избранном пока ничего нет</h3>
+                        <p class="empty-subtitle">Добавляйте понравившиеся автомобили в избранное, нажимая на сердечко</p>
+                        <a href="index.html" class="empty-button">Перейти к автомобилям</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Terms</a>
+                    <span class="footer-separator">|</span>
+                    <a href="#" class="footer-link">Privacy</a>
+                    <span class="footer-separator">|</span>
+                    <a href="#" class="footer-link">About</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2025 Sellcar. Все права защищены.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="/static/common.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadUserInfo(); 
+            await loadFavorites();
+        });
+
+
+        async function loadFavorites() {
+            const grid = document.getElementById('favoritesGrid');
+            const emptyBlock = document.getElementById('emptyFavorites');
+
+            try {
+                const response = await fetch('/api/user/favorites');
+                
+
+                if (response.status === 401) {
+                    window.location.href = '/login.html';
+                    return;
+                }
+
+                const cars = await response.json();
+                
+                grid.innerHTML = '';
+
+                if (cars.length === 0) {
+                    grid.style.display = 'none';
+                    emptyBlock.style.display = 'flex';
+                } else {
+                    grid.style.display = 'grid';
+                    emptyBlock.style.display = 'none';
+                    
+                    cars.forEach(car => {
+
+                        const carCard = createCarCardHTML(car);
+                        grid.innerHTML += carCard;
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading favorites:', error);
+            }
+        }
+
+
+        function createCarCardHTML(car) {
+
+            const iconsFolder = '/static/icon/';
+            const globalDefault = 'static/icon/unknown_photo.png';
+            const bodyTypeMap = {
+                
+                'внедорожник': 'off-road_photo.png',
+                'седан': 'sedan_photo.png',
+                'универсал': 'universal_photo.png',
+                'хэтчбек': 'hatchback_photo.png',
+                'купе': 'coupe_photo.png',
+                'минивэн': 'minivan_photo.png',
+                'пикап': 'pickup_photo.png',  
+                'другие': 'unknown_photo.png',
+            };
+
+            let photoUrl;
+
+            // Логика выбора:
+            // Если у машины есть свои фото в базе — берем первое
+            if (car.photos && car.photos.length > 0 && car.photos[0].photo_url) {
+                photoUrl = car.photos[0].photo_url;
+            } 
+            else {
+                // Получаем тип кузова, убираем пробелы и переводим в нижний регистр
+                const typeKey = (car.bodytype || '').toLowerCase().trim();
+            
+                if (bodyTypeMap[typeKey]) {
+                    photoUrl = iconsFolder + bodyTypeMap[typeKey];
+                } else {
+                    photoUrl = globalDefault;
+                }
+            }
+
+
+
+            const favClass = 'favorite-active';
+            const favIcon = 'favorite';
+
+            const formattedPrice = car.price ? car.price.toLocaleString('ru-RU') : '0';
+            const formattedMileage = car.mileage ? car.mileage.toLocaleString('ru-RU') : '0';
+
+            let badgeColorClass = "";
+            let badgeText = "";
+
+            if (car.price > 7500000 && car.price_range == 0) {
+                badgeColorClass = "price-badge-gray";
+                badgeText = "Без оценки";
+            } 
+
+            else {
+                if (car.price_range > 1) {
+                    badgeColorClass = "price-badge-orange";
+                    badgeText = "Низкая цена";
+                } else if (car.price_range < -1) {
+                    badgeColorClass = "price-badge-red";
+                    badgeText = "Высокая цена";
+                } else {
+                    badgeColorClass = "price-badge-green";
+                    badgeText = "Хорошая цена";
+                }
+            }
+
+            return `
+                <a href="car-details.html?id=${car.car_id}" class="car-card" id="card-${car.car_id}">
+                    <div class="car-image-container">
+                        <div class="car-image" 
+                            data-alt="${car.brand} ${car.model}" 
+                            style='background-image: url("${photoUrl}");'>
+                        </div>
+                        <button class="favorite-button ${favClass}" 
+                                onclick="event.preventDefault(); removeFavoriteFromPage(${car.car_id})">
+                            <span class="material-symbols-outlined">${favIcon}</span>
+                        </button>
+                    </div>
+                    <div class="car-info">
+                        <h3 class="car-title">${car.brand} ${car.model}</h3>
+                        <div class="price-section">
+                            <p class="car-price">${formattedPrice} ₽</p>
+                            <div class="price-badge ${badgeColorClass}">
+                                <p class="badge-text">${badgeText}</p>
+                            </div>
+                        </div>
+                        <p class="car-details">
+                            Год: ${car.production_date || car.year}, Пробег: ${formattedMileage} км, Двигатель: ${car.engine_displacement}L ${car.fuel_type || ''}
+                        </p>
+                    </div>
+                </a>
+            `;
+        }
+
+
+        async function removeFavoriteFromPage(carId) {
+            if(!confirm("Удалить из избранного?")) return;
+
+            try {
+                const res = await fetch(`/api/favorites/${carId}`, { method: 'DELETE' });
+                if (res.ok) {
+
+                    const card = document.getElementById(`card-${carId}`);
+                    if (card) {
+                        card.remove();
+                    }
+
+                    const grid = document.getElementById('favoritesGrid');
+                    if (grid.children.length === 0) {
+                        grid.style.display = 'none';
+                        document.getElementById('emptyFavorites').style.display = 'flex';
+                    }
+                } else {
+                    console.error("Ошибка при удалении");
+                }
+            } catch (error) {
+                console.error('Error removing favorite:', error);
+            }
+        }
+    </script>
+</body>
+</html>

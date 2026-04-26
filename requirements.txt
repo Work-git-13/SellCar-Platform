@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+passlib[bcrypt]
+python-multipart
+python-jose
+jinja2
+numpy
+pandas
+scikit-learn
+argon2-cffi
+catboost
