@@ -58,7 +58,7 @@
  
 1. **Клонируйте репозиторий и перейдите в папку:**
    ```bash
-   git clone https://github.com/ваш_логин/SellCar-Platform.git
+   git clone https://github.com/Work-git-13/SellCar-Platform.git
    cd SellCar-Platform
    ```
  
