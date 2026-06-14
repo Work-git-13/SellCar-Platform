@@ -1,25 +1,17 @@
+.git
+
 venv/
 .venv/
 env/
-.env
 
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-.vscode/
-.idea/
-*.sqbpro
-
-.DS_Store
-Thumbs.db
-
 *.db
 *.sqlite
 *.sqlite3
 *.log
 
-*.pkl
-*.joblib
 catboost_info/
